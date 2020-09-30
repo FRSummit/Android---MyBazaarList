@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#6200EE</color>
+    <color name="colorPrimaryDark">#3700B3</color>
+    <color name="colorAccent">#03DAC5</color>
+
+    <color name="menu_btn_text">#FFF</color>
+    <color name="menu_btn_background">#8600C7</color>
+
+    <color name="transparent">#00000000</color>
+
+    <color name="purple_text">#8600C7</color>
+    <color name="black_text">#000000</color>
+
+    <color name="back_btn_text_color">#FFFFFF</color>
+    <color name="about_title_text">#006893</color>
+    <color name="chapter_title_text_color">#222</color>
+    <color name="chapter_desc_text_color">#222</color>
+</resources>

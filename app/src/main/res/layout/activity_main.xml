@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MainActivity"
+    android:padding="6dp">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="80dp">
+
+        <ImageView
+            android:id="@+id/main_activity_logo_1"
+            android:layout_width="match_parent"
+            android:layout_height="80dp"
+            android:src="@drawable/my_bazar"/>
+
+        <ImageView
+            android:id="@+id/main_activity_logo_2"
+            android:layout_width="match_parent"
+            android:layout_height="80dp"
+            android:src="@drawable/my_bazar_list"
+            android:layout_marginTop="60dp"
+            android:layout_below="@id/main_activity_logo_1"/>
+
+    </RelativeLayout>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Developed by SKYNET"
+        android:textColor="#6200EE"
+        android:textSize="10dp"
+        android:layout_marginBottom="20dp"
+        android:gravity="center"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"/>
+
+</RelativeLayout>

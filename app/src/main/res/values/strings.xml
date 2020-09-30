@@ -1,0 +1,12 @@
+<resources>
+    <string name="app_name">My Market List</string>
+    <!--Ads-->
+    <string name="BANNER_320x50">BANNER</string>
+    <string name="LARGE_BANNER_320x100">LARGE_BANNER</string>
+    <string name="MEDIUM_RECTANGLE_300x250">MEDIUM_RECTANGLE</string>
+    <string name="FULL_BANNER_468x60">FULL_BANNER</string>
+    <string name="LEADERBOARD_728x90">LEADERBOARD</string>
+    <string name="my_bazar_list_app_id">ca-app-pub-4861848901455235~3111229015</string>
+
+    <string name="BANNER_TEST_UNIT_ID">ca-app-pub-3940256099942544/6300978111</string>
+</resources>

@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="30dp"
+    android:paddingLeft="10dp"
+    android:paddingRight="10dp"
+    android:gravity="center_vertical"
+    android:layout_marginTop="10dp"
+    android:background="@drawable/btn_background">
+
+    <TextView
+        android:id="@+id/single_list_item_name"
+        android:layout_width="250dp"
+        android:layout_height="wrap_content"
+        android:text="Android Name"
+        android:textSize="16dp"
+        android:textStyle="normal"
+        android:textColor="@color/menu_btn_text"
+        android:layout_alignParentLeft="true"/>
+
+    <TextView
+        android:id="@+id/single_list_item_quantity"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="10 KG"
+        android:textSize="16dp"
+        android:textStyle="normal"
+        android:textColor="@color/menu_btn_text"
+        android:layout_alignParentRight="true"/>
+
+</RelativeLayout>

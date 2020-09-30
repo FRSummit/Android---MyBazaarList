@@ -1,0 +1,247 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MyShoppintList"
+    android:padding="6dp">
+
+<!--    <ScrollView-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="match_parent">-->
+
+<!--        <LinearLayout-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="match_parent"-->
+<!--            android:orientation="vertical">-->
+
+            <RelativeLayout
+                android:id="@+id/bazaar_list_logo_section"
+                android:layout_width="match_parent"
+                android:layout_height="60dp"
+                android:gravity="center">
+
+                <ImageView
+                    android:id="@+id/about_activity_logo_1"
+                    android:layout_width="150dp"
+                    android:layout_height="30dp"
+                    android:src="@drawable/my_bazar"
+                    android:layout_alignParentStart="true"/>
+
+                <ImageView
+                    android:id="@+id/about_activity_logo_2"
+                    android:layout_width="100dp"
+                    android:layout_height="30dp"
+                    android:layout_marginLeft="20dp"
+                    android:src="@drawable/my_bazar_list"
+                    android:layout_toRightOf="@+id/about_activity_logo_1"/>
+
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:id="@+id/bazaar_list_input_section"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:layout_below="@+id/bazaar_list_logo_section">
+
+                <RelativeLayout
+                    android:id="@+id/bazaar_list_input_item_name_section"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="left">
+
+                    <TextView
+                        android:id="@+id/bazaar_list_item_name_input_text"
+                        android:layout_width="100dp"
+                        android:layout_height="wrap_content"
+                        android:text="Item Name"
+                        android:textSize="18dp"
+                        android:textColor="@color/purple_text"
+                        android:textStyle="bold"
+                        android:gravity="left"
+                        android:layout_centerVertical="true"/>
+
+                    <EditText
+                        android:id="@+id/bazaar_list_item_name_input"
+                        android:layout_width="200dp"
+                        android:layout_height="wrap_content"
+                        android:textSize="18dp"
+                        android:textColor="@color/black_text"
+                        android:textStyle="normal"
+                        android:gravity="left"
+                        android:layout_alignParentRight="true"
+                        android:layout_centerVertical="true"
+                        android:layout_toRightOf="@id/bazaar_list_item_name_input_text"/>
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:id="@+id/bazaar_list_input_item_quantity_section"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="left"
+                    android:layout_below="@+id/bazaar_list_input_item_name_section">
+
+                    <TextView
+                        android:id="@+id/bazaar_list_item_quantity_input_text"
+                        android:layout_width="100dp"
+                        android:layout_height="wrap_content"
+                        android:text="Quantity"
+                        android:textSize="18dp"
+                        android:textColor="@color/purple_text"
+                        android:textStyle="bold"
+                        android:gravity="left"
+                        android:layout_centerVertical="true"/>
+
+                    <EditText
+                        android:id="@+id/bazaar_list_item_quantity_input"
+                        android:layout_width="200dp"
+                        android:layout_height="wrap_content"
+                        android:textSize="18dp"
+                        android:textColor="@color/black_text"
+                        android:textStyle="normal"
+                        android:gravity="left"
+                        android:layout_alignParentRight="true"
+                        android:layout_centerVertical="true"
+                        android:layout_toRightOf="@id/bazaar_list_item_quantity_input_text"/>
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:id="@+id/bazaar_list_input_submit_section"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:layout_marginTop="10dp"
+                    android:layout_below="@+id/bazaar_list_input_item_quantity_section">
+
+                    <Button
+                        android:id="@+id/bazaar_list_input_submit_btn"
+                        android:layout_width="200dp"
+                        android:layout_height="30dp"
+                        android:background="@drawable/ripple_background"
+                        android:gravity="center"
+                        android:text="Add Item To Bazaar List"
+                        android:textStyle="bold"
+                        android:textColor="@color/back_btn_text_color"
+                        android:textSize="14dp"
+                        android:textAllCaps="false"
+                        android:onClick="addBtnClick" />
+
+<!--                    <Button-->
+<!--                        android:id="@+id/bazaar_list_input_submit_btn_2"-->
+<!--                        android:layout_width="200dp"-->
+<!--                        android:layout_height="30dp"-->
+<!--                        android:background="@drawable/ripple_background"-->
+<!--                        android:gravity="center"-->
+<!--                        android:text="GET ITEM"-->
+<!--                        android:textStyle="bold"-->
+<!--                        android:layout_marginTop="10dp"-->
+<!--                        android:textColor="@color/back_btn_text_color"-->
+<!--                        android:textSize="14dp"-->
+<!--                        android:textAllCaps="false"-->
+<!--                        android:onClick="getBtnClick"-->
+<!--                        android:layout_below="@+id/bazaar_list_input_submit_btn"/>-->
+                </RelativeLayout>
+
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:id="@+id/bazaar_list_item_section"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:layout_below="@id/bazaar_list_input_section">
+
+                <TextView
+                    android:id="@+id/bazaar_list_item_list_title"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="My Bazaar List"
+                    android:textSize="20dp"
+                    android:textColor="@color/purple_text"
+                    android:textStyle="bold"
+                    android:gravity="center"
+                    android:paddingBottom="6dp"
+                    android:background="@drawable/bottom_border"/>
+
+                <RelativeLayout
+                    android:id="@+id/bazaar_list_date_btn_section"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:layout_below="@id/bazaar_list_item_list_title">
+
+                    <TextView
+                        android:id="@+id/bazaar_list_item_list_date"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="30th September, 2020"
+                        android:textSize="16dp"
+                        android:textColor="@color/purple_text"
+                        android:textStyle="normal"
+                        android:gravity="left"
+                        android:layout_alignParentLeft="true"/>
+
+                    <RelativeLayout
+                        android:id="@+id/bazaar_list_save_cancel_btn_section"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentRight="true">
+
+                        <Button
+                            android:id="@+id/bazaar_list_save_btn"
+                            android:layout_width="wrap_content"
+                            android:layout_height="20dp"
+                            android:background="@drawable/ripple_background"
+                            android:gravity="center"
+                            android:text="SAVE"
+                            android:textStyle="bold"
+                            android:textColor="@color/back_btn_text_color"
+                            android:textSize="14dp"
+                            android:textAllCaps="false"
+                            android:onClick="saveBtnClick" />
+
+                        <Button
+                            android:id="@+id/bazaar_list_cancel_btn"
+                            android:layout_width="wrap_content"
+                            android:layout_height="20dp"
+                            android:background="@drawable/ripple_background"
+                            android:gravity="center"
+                            android:text="CANCEL"
+                            android:textStyle="bold"
+                            android:textColor="@color/back_btn_text_color"
+                            android:textSize="14dp"
+                            android:textAllCaps="false"
+                            android:onClick="cancelBtnClick"
+                            android:layout_marginLeft="10dp"
+                            android:layout_toRightOf="@id/bazaar_list_save_btn" />
+
+                    </RelativeLayout>
+
+                </RelativeLayout>
+
+            </RelativeLayout>
+
+    <ListView
+        android:id="@+id/bazaar_list_item_list_view"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:dividerHeight="2dp"
+        android:layout_below="@+id/bazaar_list_item_section"/>
+
+<!--        </LinearLayout>-->
+<!--    </ScrollView>-->
+
+    <com.google.android.gms.ads.AdView
+        xmlns:ads="http://schemas.android.com/apk/res-auto"
+        android:id="@+id/about_activity_banner_ad"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_alignParentBottom="true"
+        ads:adSize="@string/BANNER_320x50"
+        ads:adUnitId="@string/BANNER_TEST_UNIT_ID">
+    </com.google.android.gms.ads.AdView>
+
+</RelativeLayout>

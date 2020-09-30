@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".AboutActivity">
+
+    <RelativeLayout
+        android:id="@+id/about_activity_logo_section"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:gravity="center">
+
+        <ImageView
+            android:id="@+id/about_activity_logo_1"
+            android:layout_width="150dp"
+            android:layout_height="40dp"
+            android:src="@drawable/my_bazar"
+            android:layout_alignParentStart="true"/>
+
+        <ImageView
+            android:id="@+id/about_activity_logo_2"
+            android:layout_width="100dp"
+            android:layout_height="40dp"
+            android:layout_marginLeft="20dp"
+            android:src="@drawable/my_bazar_list"
+            android:layout_toRightOf="@+id/about_activity_logo_1"/>
+    </RelativeLayout>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@id/about_activity_logo_section">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <RelativeLayout
+                android:id="@+id/about_activity_desc_section"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingLeft="10dp"
+                android:paddingRight="10dp"
+                android:gravity="center">
+
+                <TextView
+                    android:id="@+id/about_activity_title"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="About Bazaar List"
+                    android:textSize="18dp"
+                    android:textColor="@color/purple_text"
+                    android:textStyle="bold"
+                    android:layout_marginTop="10dp"
+                    android:gravity="center"
+                    android:layout_centerHorizontal="true"/>
+
+                <TextView
+                    android:id="@+id/about_activity_desc"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Female Body Language Secrets"
+                    android:textSize="16dp"
+                    android:textColor="@color/purple_text"
+                    android:textStyle="normal"
+                    android:layout_marginTop="10dp"
+                    android:gravity="left"
+                    android:layout_centerHorizontal="true"
+                    android:layout_below="@+id/about_activity_title"/>
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/about_activity_desc_section"
+                android:paddingLeft="10dp"
+                android:layout_marginBottom="60dp"
+                android:layout_marginTop="20dp">
+
+                <Button
+                    android:id="@+id/about_activity_back_btn"
+                    android:layout_width="wrap_content"
+                    android:layout_height="30dp"
+                    android:background="@drawable/ripple_background"
+                    android:paddingLeft="10dp"
+                    android:paddingRight="10dp"
+                    android:text="Back To Home"
+                    android:textStyle="normal"
+                    android:textColor="@color/back_btn_text_color"
+                    android:textSize="14dp"
+                    android:textAllCaps="false"
+                    android:onClick="goToHomeBtnClick"
+                    android:layout_alignParentStart="true" />
+            </RelativeLayout>
+
+        </LinearLayout>
+    </ScrollView>
+
+    <com.google.android.gms.ads.AdView
+        xmlns:ads="http://schemas.android.com/apk/res-auto"
+        android:id="@+id/about_activity_banner_ad"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_alignParentBottom="true"
+        ads:adSize="@string/BANNER_320x50"
+        ads:adUnitId="@string/BANNER_TEST_UNIT_ID">
+    </com.google.android.gms.ads.AdView>
+
+</RelativeLayout>
