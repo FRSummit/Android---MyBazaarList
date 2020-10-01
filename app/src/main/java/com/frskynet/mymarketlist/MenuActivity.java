@@ -63,15 +63,9 @@ public class MenuActivity extends Activity {
     }
 
     public void historyBtnClick(View view) {
-//        Intent intent = new Intent(MenuActivity.this, HistoryActivity.class);
-//        startActivity(intent);
-//        overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
-    }
-
-    public void addNewBtnClick(View view) {
-//        Intent intent = new Intent(MenuActivity.this, AddNewItemActivity.class);
-//        startActivity(intent);
-//        overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
+        Intent intent = new Intent(MenuActivity.this, HistoryActivity.class);
+        startActivity(intent);
+        overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
     }
 
     public void aboutBtnClick(View view) {

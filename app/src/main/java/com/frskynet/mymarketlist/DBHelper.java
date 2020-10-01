@@ -31,7 +31,7 @@ public class DBHelper extends SQLiteOpenHelper {
         String QUERY;
 //        QUERY = "DROP TABLE IF EXISTS shopping_list";
 //        db.execSQL(QUERY);
-        QUERY = "CREATE TABLE IF NOT EXISTS shopping_list (_id varchar(50) primary key, item_list varchar(255), item_list_quantity varchar(255))";
+        QUERY = "CREATE TABLE IF NOT EXISTS shopping_list (_id varchar(40) primary key, show_date varchar(30), item_list varchar(255), item_list_quantity varchar(255))";
         System.out.println("Executing " + QUERY);
         db.execSQL(QUERY);
     }
@@ -41,24 +41,49 @@ public class DBHelper extends SQLiteOpenHelper {
         this.getWritableDatabase().execSQL(QUERY);
     }
 
-    public void addShoppingItem(String id, List<String> itemList, List<String> itemQuantityList) {
-        String QUERY = "INSERT INTO shopping_list VALUES ('" + id + "', '" + itemList + "', '" + itemQuantityList + "');";
+    public void addShoppingItem(String id, String date, String itemList, String itemQuantityList) {
+        String QUERY = "INSERT INTO shopping_list VALUES ('" + id + "', '" + date + "', '" + itemList + "', '" + itemQuantityList + "');";
         System.out.println("Executing " + QUERY);
         this.getWritableDatabase().execSQL(QUERY);
     }
 
     public ArrayList<String> getAllList() {
         System.out.println(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> getting all list");
-        ArrayList<String> words = new ArrayList<>();
+        ArrayList<String> id = new ArrayList<>();
+        ArrayList<String> showDate = new ArrayList<>();
+        ArrayList<String> itemName = new ArrayList<>();
+        ArrayList<String> itemQuantity = new ArrayList<>();
         String QUERY = "SELECT * from shopping_list";
         Cursor cursor = this.getWritableDatabase().rawQuery(QUERY, null);
         cursor.moveToFirst();
         while (!cursor.isAfterLast()) {
 //            words.add(cursor.getString(1));
-            words.add(cursor.getString(cursor.getColumnIndex("item_list")));
+            id.add(cursor.getString(cursor.getColumnIndex("_id")));
+            showDate.add(cursor.getString(cursor.getColumnIndex("show_date")));
+            itemName.add(cursor.getString(cursor.getColumnIndex("item_list")));
+            itemQuantity.add(cursor.getString(cursor.getColumnIndex("item_list_quantity")));
             cursor.moveToNext();
         }
-        return words;
+        return id;
+    }
+
+    public ArrayList<String> getAllListDate() {
+        ArrayList<String> showDate = new ArrayList<>();
+        String QUERY = "SELECT * from shopping_list";
+        Cursor cursor = this.getWritableDatabase().rawQuery(QUERY, null);
+        cursor.moveToFirst();
+        while (!cursor.isAfterLast()) {
+            showDate.add(cursor.getString(cursor.getColumnIndex("show_date")));
+            cursor.moveToNext();
+        }
+        return showDate;
+    }
+
+    public Cursor getSpecificData(String data) {
+        SQLiteDatabase db = this.getReadableDatabase();
+        ArrayList<String> showDate = new ArrayList<>();
+        Cursor res =  db.rawQuery( "select * from shopping_list where show_date = '" + data + "'", null );
+        return res;
     }
 
     @Override

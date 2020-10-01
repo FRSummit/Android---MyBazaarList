@@ -19,7 +19,6 @@ import java.util.Date;
 import java.util.List;
 
 public class MyShoppintList extends Activity {
-
     private String[] name = {
             "My demo item"
     };
@@ -58,12 +57,13 @@ public class MyShoppintList extends Activity {
 
         myItem = new ArrayList<>();
         myItemQuantity = new ArrayList<>();
+//        bazaarItemList = new ArrayList<>();
     }
 
     public void addBtnClick(View view) {
         if (!itemName.getText().toString().isEmpty() && !itemQuantity.getText().toString().isEmpty()) {
-            myItem.add(itemName.getText().toString());
-            myItemQuantity.add(itemQuantity.getText().toString());
+            myItem.add(itemName.getText().toString().replaceAll("\\s",""));
+            myItemQuantity.add(itemQuantity.getText().toString().replaceAll("\\s",""));
 
             name = new String[myItem.size()];
             name = myItem.toArray(name);
@@ -96,11 +96,32 @@ public class MyShoppintList extends Activity {
 //        System.out.println("Size : " + myItem);
 
 //        dbHelper.addShoppingItem(date.toString(), myItem, myItemQuantity);
-        shoppingList = dbHelper.getAllList();
+        /*
         System.out.println(shoppingList);
         for (int i=0; i<shoppingList.size(); i++) {
             System.out.println(shoppingList.get(i));
+        }*/
+//        shoppingList = dbHelper.getAllList();
+//        System.out.println(shoppingList);
+
+
+        String itemNameListForDB = "";
+        String itemQuantityListForDB = "";
+        for(int i=0; i<myItem.size(); i++) {
+            itemNameListForDB += myItem.get(i) + "__";
+            itemQuantityListForDB += myItemQuantity.get(i) + "__";
+//            showDate += myItem.get(i) + "__";
         }
+        String[] dd = date.toString().split(" ");
+//        System.out.println(date.toString());
+//        System.out.println(dd[0] + " " + dd[1] + " " + dd[2] + " " + dd[3] + " " + dd[4] + " " + dd[5]);
+        String showDate = (dd[0] + " " + dd[1] + " " + dd[2] + " " + dd[5]);
+        dbHelper.addShoppingItem(date.toString(), showDate, itemNameListForDB, itemQuantityListForDB);
+        startActivity(new Intent(MyShoppintList.this, HistoryActivity.class));
+
+//        shoppingList = dbHelper.getAllList();
+//        System.out.println(shoppingList);
+
 
 
     }
@@ -111,5 +132,11 @@ public class MyShoppintList extends Activity {
 
         lAdapter = new ListAdapter(MyShoppintList.this, name, quantity);
         lView.setAdapter(lAdapter);
+    }
+
+    public void goToMenu(View view) {
+        Intent intent = new Intent(MyShoppintList.this, MenuActivity.class);
+        startActivity(intent);
+        overridePendingTransition(R.anim.slide_in_left, R.anim.slide_out_right);
     }
 }
