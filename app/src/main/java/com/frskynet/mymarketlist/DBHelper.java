@@ -27,7 +27,6 @@ public class DBHelper extends SQLiteOpenHelper {
 
     @Override
     public void onCreate(SQLiteDatabase db) {
-        System.out.println(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> onCreated get called");
         String QUERY;
 //        QUERY = "DROP TABLE IF EXISTS shopping_list";
 //        db.execSQL(QUERY);
@@ -48,7 +47,6 @@ public class DBHelper extends SQLiteOpenHelper {
     }
 
     public ArrayList<String> getAllList() {
-        System.out.println(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> getting all list");
         ArrayList<String> id = new ArrayList<>();
         ArrayList<String> showDate = new ArrayList<>();
         ArrayList<String> itemName = new ArrayList<>();
@@ -73,7 +71,7 @@ public class DBHelper extends SQLiteOpenHelper {
         Cursor cursor = this.getWritableDatabase().rawQuery(QUERY, null);
         cursor.moveToFirst();
         while (!cursor.isAfterLast()) {
-            showDate.add(cursor.getString(cursor.getColumnIndex("show_date")));
+            showDate.add(cursor.getString(cursor.getColumnIndex("_id")));
             cursor.moveToNext();
         }
         return showDate;
@@ -82,12 +80,11 @@ public class DBHelper extends SQLiteOpenHelper {
     public Cursor getSpecificData(String data) {
         SQLiteDatabase db = this.getReadableDatabase();
         ArrayList<String> showDate = new ArrayList<>();
-        Cursor res =  db.rawQuery( "select * from shopping_list where show_date = '" + data + "'", null );
+        Cursor res =  db.rawQuery( "select * from shopping_list where _id = '" + data + "'", null );
         return res;
     }
 
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
-        System.out.println(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> onUpgrade get called");
     }
 }

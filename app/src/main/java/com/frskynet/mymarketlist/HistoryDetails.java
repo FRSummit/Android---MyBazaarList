@@ -11,6 +11,10 @@ import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
 
+import com.google.android.gms.ads.AdRequest;
+import com.google.android.gms.ads.AdView;
+import com.google.android.gms.ads.MobileAds;
+
 import java.util.ArrayList;
 
 public class HistoryDetails extends Activity {
@@ -18,10 +22,11 @@ public class HistoryDetails extends Activity {
     private ListView listView;
     private DBHelper dbHelper;
     private ListAdapter listAdapter;
-    private ArrayList<String> idList;
     private String[] itemName;
     private String[] itemQuantity;
     private String intentExtra;
+    private AdView adView;
+    private BannerAdEvents bannerAdEvents;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,10 +45,8 @@ public class HistoryDetails extends Activity {
         dateText.setText(intentExtra);
 
         dbHelper = new DBHelper(this, null, null, 1);
-//        idList = dbHelper.getAllListDate();
         Cursor cursor = dbHelper.getSpecificData(intentExtra);
         cursor.moveToFirst();
-//        dateText.setText(cursor.getString(cursor.getColumnIndex("show_date")));
         System.out.println(cursor.getString(cursor.getColumnIndex("item_list")));
         System.out.println(cursor.getString(cursor.getColumnIndex("item_list_quantity")));
 
@@ -60,11 +63,44 @@ public class HistoryDetails extends Activity {
 
         listAdapter = new ListAdapter(HistoryDetails.this, itemName, itemQuantity);
         listView.setAdapter(listAdapter);
+
+        adView = findViewById(R.id.history_details_activity_banner_ad);
+        MobileAds.initialize(this, this.getString(R.string.my_bazar_list_app_id)); //App Id from string values
+        AdRequest adRequest = new AdRequest.Builder()
+                .addTestDevice(AdRequest.DEVICE_ID_EMULATOR)
+                .build();
+        adView.loadAd(adRequest);
+        bannerAdEvents = new BannerAdEvents();
+        bannerAdEvents.loadAd(this.getApplicationContext(), adView);
     }
 
     public void goToHistory(View view) {
         Intent intent = new Intent(HistoryDetails.this, HistoryActivity.class);
         startActivity(intent);
         overridePendingTransition(R.anim.slide_in_left, R.anim.slide_out_right);
+    }
+
+    @Override
+    public void onPause() {
+        if (adView != null) {
+            adView.pause();
+        }
+        super.onPause();
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        if (adView != null) {
+            adView.resume();
+        }
+    }
+
+    @Override
+    public void onDestroy() {
+        if (adView != null) {
+            adView.destroy();
+        }
+        super.onDestroy();
     }
 }

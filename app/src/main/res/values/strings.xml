@@ -9,4 +9,10 @@
     <string name="my_bazar_list_app_id">ca-app-pub-4861848901455235~3111229015</string>
 
     <string name="BANNER_TEST_UNIT_ID">ca-app-pub-3940256099942544/6300978111</string>
+
+    <string name="BANNER_UNIT_ID_ABOUT">ca-app-pub-4861848901455235/2426571413</string>
+    <string name="BANNER_UNIT_ID_MENU">ca-app-pub-4861848901455235/1676596526</string>
+    <string name="BANNER_UNIT_ID_BAZAAR_LIST">ca-app-pub-4861848901455235/9171943160</string>
+    <string name="BANNER_UNIT_ID_BAZAAR_HISTORY">ca-app-pub-4861848901455235/2606534816</string>
+    <string name="BANNER_UNIT_ID_BAZAAR_HISTORY_DETAILS">ca-app-pub-4861848901455235/8140759061</string>
 </resources>

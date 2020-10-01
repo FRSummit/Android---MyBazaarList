@@ -1,30 +1,25 @@
 package com.frskynet.mymarketlist;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.AdapterView;
 import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.google.android.gms.common.util.ArrayUtils;
+import com.google.android.gms.ads.AdRequest;
+import com.google.android.gms.ads.AdView;
+import com.google.android.gms.ads.MobileAds;
 
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
 public class MyShoppintList extends Activity {
-    private String[] name = {
-            "My demo item"
-    };
-    private String[] quantity = {
-            "5 Kg"
-    };
+    private String[] name = {};
+    private String[] quantity = {};
     private EditText itemName;
     private EditText itemQuantity;
     private TextView bazaar_list_item_list_date;
@@ -35,6 +30,8 @@ public class MyShoppintList extends Activity {
     private List<String> myItem;
     private List<String> myItemQuantity;
     private Date date;
+    private AdView adView;
+    private BannerAdEvents bannerAdEvents;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -57,7 +54,15 @@ public class MyShoppintList extends Activity {
 
         myItem = new ArrayList<>();
         myItemQuantity = new ArrayList<>();
-//        bazaarItemList = new ArrayList<>();
+
+        adView = findViewById(R.id.my_bazaar_list_activity_banner_ad);
+        MobileAds.initialize(this, this.getString(R.string.my_bazar_list_app_id)); //App Id from string values
+        AdRequest adRequest = new AdRequest.Builder()
+                .addTestDevice(AdRequest.DEVICE_ID_EMULATOR)
+                .build();
+        adView.loadAd(adRequest);
+        bannerAdEvents = new BannerAdEvents();
+        bannerAdEvents.loadAd(this.getApplicationContext(), adView);
     }
 
     public void addBtnClick(View view) {
@@ -81,49 +86,25 @@ public class MyShoppintList extends Activity {
     }
 
     public void getBtnClick(View view) {
-        System.out.println(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> get btn clicked");
         shoppingList = dbHelper.getAllList();
         System.out.println(shoppingList);
     }
 
     public void saveBtnClick(View view) {
-//        dbHelper.removeAllTable();
-//        dbHelper.addShoppingItem("ARNOLD");
-//        dbHelper.addShoppingItem("NICHOLAS");
-//        dbHelper.addShoppingItem("JOHNY");
-//        dbHelper.addShoppingItem("TIMMY");
-
-//        System.out.println("Size : " + myItem);
-
-//        dbHelper.addShoppingItem(date.toString(), myItem, myItemQuantity);
-        /*
-        System.out.println(shoppingList);
-        for (int i=0; i<shoppingList.size(); i++) {
-            System.out.println(shoppingList.get(i));
-        }*/
-//        shoppingList = dbHelper.getAllList();
-//        System.out.println(shoppingList);
-
-
-        String itemNameListForDB = "";
-        String itemQuantityListForDB = "";
-        for(int i=0; i<myItem.size(); i++) {
-            itemNameListForDB += myItem.get(i) + "__";
-            itemQuantityListForDB += myItemQuantity.get(i) + "__";
-//            showDate += myItem.get(i) + "__";
+        if(lView.getCount() > 0) {
+            String itemNameListForDB = "";
+            String itemQuantityListForDB = "";
+            for(int i=0; i<myItem.size(); i++) {
+                itemNameListForDB += myItem.get(i) + "__";
+                itemQuantityListForDB += myItemQuantity.get(i) + "__";
+            }
+            String[] dd = date.toString().split(" ");
+            String showDate = (dd[0] + " " + dd[1] + " " + dd[2] + " " + dd[5]);
+            dbHelper.addShoppingItem(date.toString(), showDate, itemNameListForDB, itemQuantityListForDB);
+            startActivity(new Intent(MyShoppintList.this, HistoryActivity.class));
+        } else {
+            Toast.makeText(this, "You have no item to save", Toast.LENGTH_LONG).show();
         }
-        String[] dd = date.toString().split(" ");
-//        System.out.println(date.toString());
-//        System.out.println(dd[0] + " " + dd[1] + " " + dd[2] + " " + dd[3] + " " + dd[4] + " " + dd[5]);
-        String showDate = (dd[0] + " " + dd[1] + " " + dd[2] + " " + dd[5]);
-        dbHelper.addShoppingItem(date.toString(), showDate, itemNameListForDB, itemQuantityListForDB);
-        startActivity(new Intent(MyShoppintList.this, HistoryActivity.class));
-
-//        shoppingList = dbHelper.getAllList();
-//        System.out.println(shoppingList);
-
-
-
     }
 
     public void cancelBtnClick(View view) {
@@ -138,5 +119,29 @@ public class MyShoppintList extends Activity {
         Intent intent = new Intent(MyShoppintList.this, MenuActivity.class);
         startActivity(intent);
         overridePendingTransition(R.anim.slide_in_left, R.anim.slide_out_right);
+    }
+
+    @Override
+    public void onPause() {
+        if (adView != null) {
+            adView.pause();
+        }
+        super.onPause();
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        if (adView != null) {
+            adView.resume();
+        }
+    }
+
+    @Override
+    public void onDestroy() {
+        if (adView != null) {
+            adView.destroy();
+        }
+        super.onDestroy();
     }
 }
